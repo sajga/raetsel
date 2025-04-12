@@ -1,0 +1,82 @@
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Dein Reise-Rätsel</title>
+    <style>
+        body {
+            background: #f7f1e3;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+            color: #4e3e34;
+            padding: 20px;
+        }
+        h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        p {
+            font-size: 18px;
+        }
+        input {
+            padding: 10px;
+            font-size: 16px;
+            margin-top: 15px;
+            border: 1px solid #d1a684;
+            border-radius: 8px;
+            text-transform: lowercase;
+        }
+        button {
+            margin-top: 10px;
+            padding: 10px 16px;
+            font-size: 16px;
+            background-color: #d1a684;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 20px;
+            color: #228b22;
+        }
+    </style>
+</head>
+<body>
+    <h1>Finde das geheime Wort!</h1>
+    <p><strong>Buchstabensalat:</strong> GÄCKPNEHAD</p>
+    <p>Gib das richtige Wort ein:</p>
+    <input type="text" id="guess" placeholder="Deine Lösung">
+    <button onclick="checkAnswer()">Lösen</button>
+    <div id="result"></div>
+
+    <script>
+        function normalizeUmlauts(str) {
+            return str
+                .toLowerCase()
+                .replace("ä", "ae")
+                .replace("ö", "oe")
+                .replace("ü", "ue")
+                .replace("ß", "ss");
+        }
+
+        function checkAnswer() {
+            const inputRaw = document.getElementById("guess").value;
+            const input = normalizeUmlauts(inputRaw.trim());
+            const result = document.getElementById("result");
+            if (input === "handgepaeck") {
+                result.innerHTML = "YES! Richtige Lösung!<br>Schau in dein Handgepäck – dort findest du deinen Boarding Pass…";
+            } else {
+                result.innerHTML = "Leider falsch – versuch's nochmal!";
+            }
+        }
+    </script>
+</body>
+</html>
